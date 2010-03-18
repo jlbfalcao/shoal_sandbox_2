@@ -88,15 +88,15 @@ public class SimpleGMSSample implements CallBack {
 
     private void registerForGroupEvents(GroupManagementService gms) {
         logger.log(Level.INFO, "Registering for group event notifications");
-//        gms.addActionFactory(new JoinNotificationActionFactoryImpl(this));
+        gms.addActionFactory(new JoinNotificationActionFactoryImpl(this));
         gms.addActionFactory(new JoinedAndReadyNotificationActionFactoryImpl(this));
-//        gms.addActionFactory(new FailureSuspectedActionFactoryImpl(this));
+        gms.addActionFactory(new FailureSuspectedActionFactoryImpl(this));
         gms.addActionFactory("core", new FailureRecoveryActionFactoryImpl(this));
 //        gms.addActionFactory(new FailureRecoveryActionFactoryImpl(this));
 //        gms.addActionFactory(new FailureRecoveryActionFactoryImpl(this));
 //        gms.addActionFactory(new PlannedShutdownActionFactoryImpl(this));
 //        gms.addActionFactory(new MessageActionFactoryImpl(this), "SimpleSampleComponent");
-//        gms.addActionFactory(new GroupLeadershipNotificationActionFactoryImpl(this));
+        gms.addActionFactory(new GroupLeadershipNotificationActionFactoryImpl(this));
     }
 
     private void joinGMSGroup(String groupName, GroupManagementService gms) throws GMSException {
@@ -164,10 +164,10 @@ public class SimpleGMSSample implements CallBack {
         logger.log(Level.INFO, "Received Notification of type : " + signal.getClass().getName());
         try {
             System.out.println("md=" + signal.getMemberDetails());
-
+            logger.log(Level.INFO, "Source Member: " + signal.getMemberToken());
 
             signal.acquire();
-            logger.log(Level.INFO, "Source Member: " + signal.getMemberToken());
+//            logger.log(Level.INFO, "Source Member: " + signal.getMemberToken());
 
             if (signal instanceof JoinedAndReadyNotificationSignal) {
                 System.out.println("******************** JoinedAndReadyNotificationSignal **********************");

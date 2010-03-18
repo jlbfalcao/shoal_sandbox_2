@@ -60,10 +60,10 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SimpleGMSSample.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SimpleGMSSample.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SimpleGMSSample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="28" selection-start="835" selection-end="850" vertical-scroll-proportion="-12.307693">
+            <state line="170" column="82" selection-start="6769" selection-end="6769" vertical-scroll-proportion="0.6110497">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,10 +71,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="35" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.51557463">
+            <state line="30" column="35" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -100,8 +100,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SimpleGMSSample.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/SimpleGMSSample.java" />
       </list>
     </option>
   </component>
@@ -408,19 +408,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SimpleGMSSample.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="28" selection-start="835" selection-end="850" vertical-scroll-proportion="-12.307693">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="30" column="35" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/SimpleGMSSample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="35" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.51557463">
-          <folding />
+        <state line="170" column="82" selection-start="6769" selection-end="6769" vertical-scroll-proportion="0.6110497">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
