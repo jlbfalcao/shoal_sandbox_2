@@ -63,10 +63,19 @@
       <file leaf-file-name="SimpleGMSSample.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SimpleGMSSample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="71" selection-start="1713" selection-end="1713" vertical-scroll-proportion="0.3889503">
+            <state line="95" column="73" selection-start="3493" selection-end="3493" vertical-scroll-proportion="0.6895028">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServiceProviderConfigurationKeys.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/net/java/shoal/shoal-gms/1.1/shoal-gms-1.1.jar!/com/sun/enterprise/ee/cms/core/ServiceProviderConfigurationKeys.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="25" selection-start="180" selection-end="180" vertical-scroll-proportion="-2.6666667">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -415,9 +424,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/net/java/shoal/shoal-gms/1.1/shoal-gms-1.1.jar!/com/sun/enterprise/ee/cms/core/ServiceProviderConfigurationKeys.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="25" selection-start="180" selection-end="180" vertical-scroll-proportion="-2.6666667">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SimpleGMSSample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="71" selection-start="1713" selection-end="1713" vertical-scroll-proportion="0.3889503">
+        <state line="95" column="73" selection-start="3493" selection-end="3493" vertical-scroll-proportion="0.6895028">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

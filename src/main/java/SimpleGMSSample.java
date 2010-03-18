@@ -5,8 +5,12 @@ import com.sun.enterprise.ee.cms.impl.common.GroupLeadershipNotificationSignalIm
 import com.sun.enterprise.ee.cms.impl.common.JoinNotificationSignalImpl;
 
 import java.text.MessageFormat;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.sun.enterprise.ee.cms.core.ServiceProviderConfigurationKeys.FAILURE_DETECTION_TIMEOUT;
+import static com.sun.enterprise.ee.cms.core.ServiceProviderConfigurationKeys.FAILURE_VERIFICATION_TIMEOUT;
 
 /**
  * A Simple sample client application that uses Shoal library to register for
@@ -85,8 +89,11 @@ public class SimpleGMSSample implements CallBack {
     private GroupManagementService initializeGMS(String serverName, String groupName) {
         logger.log(Level.INFO, "Initializing Shoal for member: " + serverName + " group:" + groupName);
 //        GMSFactory.setGMSEnabledState(groupName, true);
+        Properties config = new Properties();
+        config.put(FAILURE_DETECTION_TIMEOUT, 1000);
+        config.put(FAILURE_VERIFICATION_TIMEOUT, 1000);
         return (GroupManagementService) GMSFactory.startGMSModule(serverName,
-                groupName, GroupManagementService.MemberType.CORE, null);
+                groupName, GroupManagementService.MemberType.CORE, config);
     }
 
     private void registerForGroupEvents(GroupManagementService gms) {
