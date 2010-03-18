@@ -45,6 +45,9 @@ public class SimpleGMSSample implements CallBack {
         logger.log(Level.INFO, "Starting SimpleGMSSample....");
 
         serverName = "server" + System.currentTimeMillis();
+
+
+        System.out.println(" >>>>>>>>>>>>>>>>> EU SOU = " +  serverName);
         final String groupName = "Group1";
 
 //        gms.
