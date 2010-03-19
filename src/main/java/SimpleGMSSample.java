@@ -63,22 +63,22 @@ public class SimpleGMSSample implements CallBack {
         private void getAllMemberStates() {
             long startTime = System.currentTimeMillis();
             List<String> members = gms.getGroupHandle().getCurrentCoreMembers();
-            logger.info("Enter getAllMemberStates currentMembers=" + members.size() + " threshold(ms)=" + threshold +
-                    " timeout(ms)=" + timeout);
+//            logger.info("Enter getAllMemberStates currentMembers=" + members.size() + " threshold(ms)=" + threshold +
+//                    " timeout(ms)=" + timeout);
             for (String member : members) {
                 MemberStates state = gms.getGroupHandle().getMemberState(member, threshold, timeout);
                 logger.info("getMemberState member=" + member + " state=" + state +
                         " threshold=" + threshold + " timeout=" + timeout);
             }
-            logger.info("exit getAllMemberStates()  elapsed time=" + (System.currentTimeMillis() - startTime) +
-                    " ms " + "currentMembers#=" + members.size());
+//            logger.info("exit getAllMemberStates()  elapsed time=" + (System.currentTimeMillis() - startTime) +
+//                    " ms " + "currentMembers#=" + members.size());
         }
 
         public void run() {
             while (getMemberState) { // && !stopped) {
                 getAllMemberStates();
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(2000);
                 } catch (InterruptedException ie) {
                 }
             }

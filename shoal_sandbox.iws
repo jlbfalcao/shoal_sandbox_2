@@ -63,7 +63,7 @@
       <file leaf-file-name="SimpleGMSSample.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SimpleGMSSample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="116" column="13" selection-start="4120" selection-end="4120" vertical-scroll-proportion="0.78305084">
+            <state line="68" column="16" selection-start="2532" selection-end="2532" vertical-scroll-proportion="0.47570622">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -685,7 +685,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SimpleGMSSample.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="13" selection-start="4120" selection-end="4120" vertical-scroll-proportion="0.78305084">
+        <state line="68" column="16" selection-start="2532" selection-end="2532" vertical-scroll-proportion="0.47570622">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
