@@ -3,8 +3,11 @@ import com.sun.enterprise.ee.cms.impl.client.*;
 import com.sun.enterprise.ee.cms.impl.common.FailureRecoverySignalImpl;
 import com.sun.enterprise.ee.cms.impl.common.GroupLeadershipNotificationSignalImpl;
 import com.sun.enterprise.ee.cms.impl.common.JoinNotificationSignalImpl;
+import com.sun.enterprise.ee.cms.spi.MemberStates;
+import com.sun.enterprise.jxtamgmt.JxtaUtil;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,11 +35,53 @@ public class SimpleGMSSample implements CallBack {
     private Boolean reallyReady = false;
 
     public static void main(String[] args) {
+
+
+        JxtaUtil.setupLogHandler();
+
+
         SimpleGMSSample sgs = new SimpleGMSSample();
         try {
             sgs.runSimpleSample();
         } catch (GMSException e) {
             logger.log(Level.SEVERE, "Exception occured while joining group:" + e);
+        }
+    }
+
+
+    public class CLB implements Runnable {
+        boolean getMemberState;
+        long threshold;
+        long timeout;
+
+        public CLB(boolean getMemberState, long threshold, long timeout) {
+            this.getMemberState = getMemberState;
+            this.threshold = threshold;
+            this.timeout = timeout;
+        }
+
+        private void getAllMemberStates() {
+            long startTime = System.currentTimeMillis();
+            List<String> members = gms.getGroupHandle().getCurrentCoreMembers();
+            logger.info("Enter getAllMemberStates currentMembers=" + members.size() + " threshold(ms)=" + threshold +
+                    " timeout(ms)=" + timeout);
+            for (String member : members) {
+                MemberStates state = gms.getGroupHandle().getMemberState(member, threshold, timeout);
+                logger.info("getMemberState member=" + member + " state=" + state +
+                        " threshold=" + threshold + " timeout=" + timeout);
+            }
+            logger.info("exit getAllMemberStates()  elapsed time=" + (System.currentTimeMillis() - startTime) +
+                    " ms " + "currentMembers#=" + members.size());
+        }
+
+        public void run() {
+            while (getMemberState) { // && !stopped) {
+                getAllMemberStates();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ie) {
+                }
+            }
         }
     }
 
@@ -51,7 +96,7 @@ public class SimpleGMSSample implements CallBack {
         serverName = "server" + System.currentTimeMillis();
 
 
-        System.out.println(" >>>>>>>>>>>>>>>>> EU SOU = " +  serverName);
+        System.out.println(" >>>>>>>>>>>>>>>>> EU SOU = " + serverName);
         final String groupName = "Group1";
 
 //        gms.
@@ -76,6 +121,9 @@ public class SimpleGMSSample implements CallBack {
             System.out.println("--------------");
             gms.reportJoinedAndReadyState(groupName);
 
+            final Thread clbThread = new Thread(new CLB(true, 1000, 1000), "CLB");
+            clbThread.start();
+
 
             waitForShutdown();
 
@@ -90,10 +138,11 @@ public class SimpleGMSSample implements CallBack {
         logger.log(Level.INFO, "Initializing Shoal for member: " + serverName + " group:" + groupName);
 //        GMSFactory.setGMSEnabledState(groupName, true);
         Properties config = new Properties();
-        config.put(FAILURE_DETECTION_TIMEOUT, 1000);
-        config.put(FAILURE_VERIFICATION_TIMEOUT, 1000);
+//        config.put(FAILURE_DETECTION_TIMEOUT.name(), 1000);
+//        config.put(FAILURE_VERIFICATION_TIMEOUT.name(), 1000);
+//        config.put(ServiceProviderConfigurationKeys.BIND_INTERFACE_ADDRESS, System.getProperty("ip"));
         return (GroupManagementService) GMSFactory.startGMSModule(serverName,
-                groupName, GroupManagementService.MemberType.CORE, config);
+                groupName, GroupManagementService.MemberType.CORE, null); //config);
     }
 
     private void registerForGroupEvents(GroupManagementService gms) {
@@ -187,10 +236,10 @@ public class SimpleGMSSample implements CallBack {
                 System.out.println("who?=" + s.getMemberToken());
 
 //                groupHandle.getDistributedStateCache().addToCache("sdfasd", null.);
-                
+
                 // eu sou lider do cluster E esse evento é sobre "mim".
-                if ( groupHandle.getGroupLeader().equals(serverName) && s.getMemberToken().equals(serverName) ) {
-                    if ( !gms.getMemberDetails(serverName).containsKey("master") ) {
+                if (groupHandle.getGroupLeader().equals(serverName) && s.getMemberToken().equals(serverName)) {
+                    if (!gms.getMemberDetails(serverName).containsKey("master")) {
                         System.out.println("==============================\n SOU O MASTER \n================================\n");
                         try {
                             gms.updateMemberDetails(serverName, "master", true);
